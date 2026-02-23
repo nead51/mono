@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Cloud, Newspaper, Timer, Image as ImageIcon, LayoutGrid, Calculator } from 'lucide-react';
+import { FullscreenToggle } from './components/FullscreenToggle';
 import CribbageAlchemist from './modules/Cribbage';
 import Weather from './modules/Weather';
 import NewsTicker from './modules/News';
@@ -78,12 +79,12 @@ const App: React.FC = () => {
   }, []);
 
   const modules = [
-    { id: 'cribbage', title: 'Cribbage Alchemist', icon: Calculator, color: '#e0faff', span: 'col-span-12 lg:col-span-8 row-span-2', component: CribbageAlchemist },
+    { id: 'cribbage', title: 'Cribbage', icon: Calculator, color: '#e0faff', span: 'col-span-12 lg:col-span-8 row-span-2', component: CribbageAlchemist },
     { id: 'weather', title: 'Hometown Weather', icon: Cloud, color: '#e0f2ff', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: Weather },
     { id: 'news', title: 'Global News Feed', icon: Newspaper, color: '#e0ffe0', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: NewsTicker },
     { id: 'timer', title: 'Kitchen Timer', icon: Timer, color: '#ffe0f0', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: KitchenTimer },
     { id: 'photos', title: 'Photo Frame', icon: ImageIcon, color: '#f0e0ff', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: PhotoFrame },
-    { id: 'tools', title: 'Alchemist Tools', icon: LayoutGrid, color: '#fffde0', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: QuickLaunch },
+    { id: 'tools', title: 'Alchemist', icon: LayoutGrid, color: '#fffde0', span: 'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', component: QuickLaunch },
   ];
 
   return (
@@ -91,20 +92,11 @@ const App: React.FC = () => {
       <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pastel-cyan blur-[120px] rounded-full opacity-30 -z-10"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pastel-pink blur-[120px] rounded-full opacity-30 -z-10"></div>
 
-      <header className="px-6 md:px-12 pt-8 md:pt-12 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-        <div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900">
-            Alchemist’s <span className="text-blue-600">Hearth</span>
-          </h1>
-          <p className="text-slate-500 font-bold uppercase tracking-[0.2em] text-xs mt-1">Kitchen Command Center // Portal OS</p>
-        </div>
-        <div className="bg-white/60 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/50 shadow-sm flex items-center gap-3">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-xs font-black text-slate-600 tracking-widest uppercase">System Online</span>
-        </div>
-      </header>
+      <div className="fixed top-6 right-6 z-40">
+        <FullscreenToggle />
+      </div>
 
-      <main className="grid grid-cols-12 gap-4 md:gap-6 p-6 md:p-12 max-w-[1800px] mx-auto pb-24">
+      <main className="grid grid-cols-12 gap-4 md:gap-6 p-6 md:p-12 mt-12 max-w-[1800px] mx-auto pb-24">
         {modules.map((mod) => (
           <BentoTile
             key={mod.id}
